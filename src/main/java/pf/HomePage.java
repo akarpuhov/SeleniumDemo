@@ -2,7 +2,6 @@ package pf;
 
 import atobjects.Email;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -11,13 +10,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.MyLogger;
+import utils.ATLogger;
 import utils.TestUtils;
 
 import java.time.Duration;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.function.Function;
 
 public class HomePage extends AbstractPage {
 
@@ -79,6 +77,7 @@ public class HomePage extends AbstractPage {
     }
 
     public String getToEmailLabel(){
+        toEmailLabel = waitForElementLocatedBy(By.xpath("//span[@class='letter__contact-item']"));
         return toEmailLabel.getAttribute("title");
     }
 
@@ -87,9 +86,9 @@ public class HomePage extends AbstractPage {
     }
 
     public void fillEmail(Email email){
-        waitForVisibility(writeEmail);
+        waitForElementToBeClickable(writeEmail);
         writeEmail.click();
-        waitForVisibility(emailToInput);
+        emailToInput = waitForElementLocatedBy(By.xpath("//div[@data-name='to']//input"));
         emailToInput.sendKeys(email.To);
         emailSubjectInput.sendKeys(email.Subject);
         emailBodyDiv.sendKeys(email.Body);
@@ -102,7 +101,7 @@ public class HomePage extends AbstractPage {
     }
 
     public void clickWriteEmailButton(){
-        MyLogger.info("Сlick WriteEmailButton.");
+        ATLogger.info("Сlick WriteEmailButton.");
         waitForVisibility(logoutLink);
         writeEmail.click();
     }
@@ -122,70 +121,70 @@ public class HomePage extends AbstractPage {
 
     public void clickDraftsLink(){
         TestUtils.hilightElement(driver, draftsLink);
-        MyLogger.info("Click DraftsLink.");
+        ATLogger.info("Click DraftsLink.");
         ActionClick(draftsLink);
     }
 
-    public void ActionClick(WebElement element){
-        new Actions(driver).click(element).build().perform();
-    }
-
     public void openEmail(String subject) {
-        List<WebElement> elements = driver.findElements(By.xpath("//span[@class='llc__subject']"));
+        List<WebElement> elements = waitForAllElementsLocatedBy(By.xpath("//span[@class='llc__subject']"));
         for(WebElement element: elements){
-            MyLogger.info("Element.getText = '" + element.getText() + "'");
+            waitForElementToBeClickable(element);
             if(element.getText().equals(subject)) {
                 TestUtils.hilightElement(driver, element, "red");
                 element.click();
                 return;
             }
         }
-        MyLogger.info("Email with subject '" + subject + "' was not found.");
+        ATLogger.error("Email with subject '" + subject + "' was not found.");
 //        var element = elements.stream().filter(elem -> subject.equals(elem.getText())).findAny().orElse(null);
 //        element.click();
     }
 
     public boolean findEmailBySubject(String subject){
-        MyLogger.info("Find email by subject.");
+        ATLogger.info("Find email by subject.");
         List<WebElement> elements = driver.findElements(By.xpath("//span[@class='llc__subject']"));
         for(WebElement element: elements){
             if(element.getText().equals(subject)) {
-                MyLogger.info("Founded element" + element.toString());
+                ATLogger.info("Founded element" + element.toString());
                 return true;
             }
         }
-        MyLogger.info("Element was not found...");
+        ATLogger.error("Element with subject {} was not found...");
         return false;
     }
 
     public  String getEmailTo(){
-        MyLogger.info("Read emailSubjectInput");
+        ATLogger.info("Read emailSubjectInput");
+        emailToLabel = waitForElementLocatedBy(By.xpath("//div[@data-name='to']//span"));
         return emailToLabel.getText();
     }
 
     public String getEmailSubject(){
-        MyLogger.info("Read emailSubjectInput");
+        ATLogger.info("Read emailSubjectInput");
+        emailSubjectInput = waitForElementLocatedBy(By.xpath("//input[@name='Subject']"));
         return emailSubjectInput.getAttribute("value");
     }
 
     public String getEmailBody() {
-        MyLogger.info("Read emailBodyDiv");
+        ATLogger.info("Read emailBodyDiv");
+        emailBodyDiv = waitForElementLocatedBy(By.xpath("//div[@contenteditable='true' and @role='textbox']"));
         return  emailBodyDiv.getText();
     }
 
     public void clickSendButton() {
-        MyLogger.info("Click send button");
+        ATLogger.info("Click send button");
         sendButton.click();
-
     }
 
     public void clickClosePopupButton(){
-        MyLogger.info("Click close popup button");
+        ATLogger.info("Click close popup button");
+        waitForElementToBeClickable(closePopupButton);
         closePopupButton.click();
     }
 
     public void clickSendEmailsButton(){
-        MyLogger.info("Click send emails button");
+        ATLogger.info("Click send emails button");
+        waitForElementToBeClickable(sendEmailsButton);
         sendEmailsButton.click();
     }
 
@@ -199,7 +198,7 @@ public class HomePage extends AbstractPage {
     }
 
     public void handleToolTip() {
-        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+        Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(5))
                 .pollingEvery(Duration.ofMillis(500))
                 .ignoring(NoSuchElementException.class);

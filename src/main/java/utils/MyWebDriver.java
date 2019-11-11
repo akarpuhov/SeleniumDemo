@@ -29,12 +29,12 @@ public class MyWebDriver {
     }
 
     private static WebDriver init() {
-        //System.setProperty("webdriver.chrome.driver", "C:/ProgramData/ChromeWebDriver/chromedriver.exe");
+        //System.setProperty("webdriver.chrome.driver", "C:/ChromeDriver/chromedriver.exe");
         driver = new ChromeDriver();
 //        WebDriver driver = new RemoteWebDriver(new URL("http://127.0.0.1:4444/wd/hub"), DesiredCapabilities.chrome());
-        driver.manage().timeouts().pageLoadTimeout(PAGE_LOAD_DEFAULT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
-        driver.manage().timeouts().implicitlyWait(COMMAND_DEFAULT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
-        driver.manage().timeouts().setScriptTimeout(SCRIPT_EXECUTION_TIMEOUT_SECONDS, TimeUnit.SECONDS);
+        //driver.manage().timeouts().pageLoadTimeout(PAGE_LOAD_DEFAULT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
+        //driver.manage().timeouts().implicitlyWait(COMMAND_DEFAULT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
+        //driver.manage().timeouts().setScriptTimeout(SCRIPT_EXECUTION_TIMEOUT_SECONDS, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         return driver;
     }
@@ -151,21 +151,21 @@ public class MyWebDriver {
 //        driver.navigate().refresh();
 //    }
 
-    public static void takeScreenshot() {
+    static void takeScreenshot() {
         File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         try {
             String screenshotName = SCREENSHOTS_NAME_TPL + System.nanoTime();
             String scrPath = screenshotName + ".jpg";
             File copy = new File(scrPath);
             FileUtils.copyFile(screenshot, copy);
-            MyLogger.info("Saved screenshot: " + screenshotName);
+            ATLogger.info("Saved screenshot: " + screenshotName);
             //MyLogger.attach(scrPath, "Screenshot");
         } catch (IOException e) {
-            MyLogger.error("Failed to make screenshot");
+            ATLogger.error("Failed to make screenshot");
         }
     }
 
-    public static void kill() {
+    static void kill() {
         if (driver != null) {
             try {
                 driver.quit();

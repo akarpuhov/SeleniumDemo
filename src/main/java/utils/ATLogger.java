@@ -2,9 +2,9 @@ package utils;
 
 import org.apache.log4j.Logger;
 
-public class MyLogger {
+public class ATLogger {
 
-    public static Logger logger = Logger.getLogger(MyLogger.class);
+    private static Logger logger = Logger.getLogger(ATLogger.class);
 
     public static void error(String message) {
         logger.error(message);

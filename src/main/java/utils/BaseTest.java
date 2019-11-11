@@ -1,5 +1,4 @@
 package utils;
-import org.apache.tika.sax.TextContentHandler;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
@@ -23,17 +22,17 @@ public class BaseTest {
         {
             if(result.getStatus() == ITestResult.SUCCESS)
             {
-                MyLogger.info("passed **********");
+                ATLogger.info("passed **********");
             }
 
             else if(result.getStatus() == ITestResult.FAILURE)
             {
                 MyWebDriver.takeScreenshot();
-                MyLogger.info("Failed ***********");
+                ATLogger.info("Failed ***********");
             }
             else if(result.getStatus() == ITestResult.SKIP ){
 
-                MyLogger.info("Skiped ***********");
+                ATLogger.info("Skiped ***********");
             }
         }
         catch(Exception e)
