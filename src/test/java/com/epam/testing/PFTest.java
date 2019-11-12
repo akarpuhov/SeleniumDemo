@@ -19,7 +19,7 @@ public class PFTest extends BaseTest {
 //    String login = "at.test@inbox.ru";
 //    String password = "saratov01";
 
-    @Test(description = "Check creating draft email and send it.")
+    //@Test(description = "Check creating draft email and send it.")
     public void MailRuTest() {
         LoginPage loginPage = new LoginPage();
         loginPage.open();
@@ -56,5 +56,21 @@ public class PFTest extends BaseTest {
         assertThat(homePage.getBodyEmailLabel(), containsString(email.Body));
 
         //homePage.handleToolTip();
+    }
+
+    @Test(description = "Check creating draft email and send it.")
+    public void BrokenTest() throws Exception {
+        LoginPage loginPage = new LoginPage();
+        loginPage.open();
+        Login login = new Login();
+        loginPage.fillLogin(login.login);
+
+        throw new Exception("Custom Error");
+//        loginPage.clickEnterPasswordButton();
+//        loginPage.fillPassword(login.password);
+//        HomePage homePage = loginPage.clickEnterButton();
+//
+//        Assert.assertTrue(homePage.isPageOpened(), "Home page was not opened.");
+
     }
 }

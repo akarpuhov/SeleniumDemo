@@ -14,8 +14,6 @@ public class BaseTest {
         driver = MyWebDriver.getDriver();
     }
 
-
-
     @AfterMethod
     public void AfterMethod(ITestResult result){
         try
@@ -27,6 +25,8 @@ public class BaseTest {
 
             else if(result.getStatus() == ITestResult.FAILURE)
             {
+                ATLogger.error("\n"+ result.getThrowable().getMessage());
+                result.getThrowable().printStackTrace();
                 MyWebDriver.takeScreenshot();
                 ATLogger.info("Failed ***********");
             }
