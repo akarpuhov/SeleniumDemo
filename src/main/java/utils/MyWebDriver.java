@@ -165,7 +165,7 @@ public class MyWebDriver {
         }
     }
 
-    static void kill() {
+    public static void kill() {
         if (driver != null) {
             try {
                 driver.quit();
