@@ -2,7 +2,7 @@ package stepdef;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import utils.MyWebDriver;
+import utils.ATWebDriver;
 
 public class ScenarioHooks {
 
@@ -13,6 +13,6 @@ public class ScenarioHooks {
 
     @After
     public void afterScenario(){
-        MyWebDriver.kill();
+        ATWebDriver.kill();
     }
 }

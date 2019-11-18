@@ -8,17 +8,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-public class MyWebDriver {
+public class ATWebDriver {
     private static final int PAGE_LOAD_DEFAULT_TIMEOUT_SECONDS = 15;
     private static final int COMMAND_DEFAULT_TIMEOUT_SECONDS = 10;
     private static final int SCRIPT_EXECUTION_TIMEOUT_SECONDS = 10;
     private static final int WAIT_ELEMENT_TIMEOUT = 10;
     private static final String SCREENSHOTS_NAME_TPL = "screenshots/scr";
     private static WebDriver driver = null;
-
-    //private Browser(WebDriver driver) {
-//        this.driver = driver;
-//    }
 
     public static WebDriver getDriver() {
         if (driver != null) {

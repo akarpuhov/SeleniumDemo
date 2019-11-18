@@ -11,11 +11,10 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.CustomConditions;
-import utils.MyWebDriver;
+import utils.ATWebDriver;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.function.Function;
 
 public class AbstractPage {
 
@@ -23,7 +22,7 @@ public class AbstractPage {
     private static final int WAIT_SECONDS = 5;
 
     AbstractPage() {
-        this.driver = MyWebDriver.getDriver();
+        this.driver = ATWebDriver.getDriver();
         PageFactory.initElements(driver, this);
     }
 

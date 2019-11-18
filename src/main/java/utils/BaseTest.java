@@ -11,7 +11,7 @@ public class BaseTest {
 
     @BeforeClass
     public void BeforeTest(){
-        driver = MyWebDriver.getDriver();
+        driver = ATWebDriver.getDriver();
     }
 
     @AfterMethod
@@ -27,7 +27,7 @@ public class BaseTest {
             {
                 ATLogger.error("\n"+ result.getThrowable().getMessage());
                 result.getThrowable().printStackTrace();
-                MyWebDriver.takeScreenshot();
+                ATWebDriver.takeScreenshot();
                 ATLogger.info("Failed ***********");
             }
             else if(result.getStatus() == ITestResult.SKIP ){
@@ -44,7 +44,7 @@ public class BaseTest {
 
     @AfterClass
     public void AfterClass(){
-        MyWebDriver.kill();
+        ATWebDriver.kill();
     }
 
 }

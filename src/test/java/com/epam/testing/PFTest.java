@@ -2,14 +2,11 @@ package com.epam.testing;
 
 import atobjects.Email;
 import atobjects.Login;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pf.HomePage;
 import pf.LoginPage;
 import utils.BaseTest;
-import utils.CustomConditions;
-import utils.MyWebDriver;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
