@@ -16,7 +16,7 @@ public class PFTest extends BaseTest {
 //    String login = "at.test@inbox.ru";
 //    String password = "saratov01";
 
-    //@Test(description = "Check creating draft email and send it.")
+    @Test(description = "Check creating draft email and send it.")
     public void MailRuTest() {
         LoginPage loginPage = new LoginPage();
         loginPage.open();
