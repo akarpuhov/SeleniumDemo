@@ -25,8 +25,8 @@ public class BaseTest {
 
             else if(result.getStatus() == ITestResult.FAILURE)
             {
-                ATLogger.error("\n"+ result.getThrowable().getMessage());
-                result.getThrowable().printStackTrace();
+                ATLogger.error("\n"+ System.err.toString());// result.getThrowable().getMessage());
+                //result.getThrowable().printStackTrace();
                 ATWebDriver.takeScreenshot();
                 ATLogger.info("Failed ***********");
             }

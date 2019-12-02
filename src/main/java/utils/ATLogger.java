@@ -1,40 +1,42 @@
 package utils;
 
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ATLogger {
 
-    private static Logger logger = Logger.getLogger(ATLogger.class);
+    private static Logger LOGGER = LogManager.getLogger(ATLogger.class);
 
     public static void error(String message) {
-        logger.error(message);
+        LOGGER.error(message);
     }
 
     public static void error(String message, Throwable throwable) {
-        logger.error(message, throwable);
+        LOGGER.error(message, throwable);
     }
 
     public static void info(String message) {
-        logger.info(message);
+        LOGGER.info(message);
     }
 
     public static void debug(String message) {
-        logger.debug(message);
+        LOGGER.debug(message);
     }
 
     public static void warn(String message) {
-        logger.warn(message);
+        LOGGER.warn(message);
     }
 
     public static void trace(String message) {
-        logger.trace(message);
+        LOGGER.trace(message);
     }
 
     public static void log(String message){
-        logger.info(message);
+        LOGGER.info(message);
     }
 
-    public static void attach(String filePath, String message) {
-        //info("RP_MESSAGE#FILE#{}#{}", filePath, message);
+    static void attach(String filePath, String message) {
+        LOGGER.info("RP_MESSAGE#FILE#{}#{}", filePath, message);
     }
 }

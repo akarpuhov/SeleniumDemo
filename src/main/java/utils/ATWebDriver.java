@@ -147,15 +147,15 @@ public class ATWebDriver {
 //        driver.navigate().refresh();
 //    }
 
-    static void takeScreenshot() {
-        File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+    public static void takeScreenshot() {
+       File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         try {
             String screenshotName = SCREENSHOTS_NAME_TPL + System.nanoTime();
             String scrPath = screenshotName + ".jpg";
             File copy = new File(scrPath);
             FileUtils.copyFile(screenshot, copy);
             ATLogger.info("Saved screenshot: " + screenshotName);
-            //MyLogger.attach(scrPath, "Screenshot");
+            ATLogger.attach(scrPath, "Screenshot");
         } catch (IOException e) {
             ATLogger.error("Failed to make screenshot");
         }

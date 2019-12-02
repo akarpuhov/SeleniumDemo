@@ -55,7 +55,7 @@ public class PFTest extends BaseTest {
         //homePage.handleToolTip();
     }
 
-    @Test(description = "Check creating draft email and send it.")
+    //@Test(description = "Check creating draft email and send it.")
     public void BrokenTest() throws Exception {
         LoginPage loginPage = new LoginPage();
         loginPage.open();

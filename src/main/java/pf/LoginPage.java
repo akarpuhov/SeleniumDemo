@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import utils.ATWebDriver;
 import utils.TestUtils;
 
 public class LoginPage extends AbstractPage {
@@ -31,6 +32,7 @@ public class LoginPage extends AbstractPage {
 
     public void open(){
         driver.get("https://mail.ru");
+        ATWebDriver.takeScreenshot();
     }
 
     public void fillLogin(String login){
